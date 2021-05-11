@@ -5,6 +5,10 @@ class ProfileState {
 
     isLogged = false;
 
+    newName = '';
+    lastPassword = '';
+    newPassword = '';
+
     constructor() {
         makeAutoObservable(this);
     }
@@ -16,11 +20,24 @@ class ProfileState {
             data = JSON.parse(JSON.stringify(response.data))
         })
 
-        console.log(data.status)
-
         if (data.status === "ok") {
             this.isLogged = true;
         }
+    }
+
+    changeName(name) {
+        this.newName = name;
+    }
+
+    async changeNameSend() {
+        let data = {}
+
+        await axios.post('/profile/changename', {
+            name: this.newName
+        }).then((response) => {
+            data = JSON.parse(JSON.stringify(response.data))
+        })
+
     }
 }
 

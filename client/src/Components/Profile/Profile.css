@@ -3,3 +3,13 @@
     margin: auto;
     margin-top: 10%;
 }
+.Profile-input-block {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.Profile-h3 {
+    margin-bottom: 10%;
+}
+.Profile-logout-btn {
+    margin-top: 10%;
+}

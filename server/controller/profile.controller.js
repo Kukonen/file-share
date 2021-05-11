@@ -15,6 +15,18 @@ class profileController {
         }
     }
 
+    async changeName(req, res) {
+        let user = []
+
+        const name = req.body.name;
+
+        console.log(name)
+
+        await db.query(`UPDATE public."users" SET name = '${name}' WHERE key = '${req.cookies.key}'`).then((result) => {
+            user = JSON.parse(JSON.stringify(result.rows));
+        }).catch(e => console.log('error db'))
+    }
+
 }
 
 module.exports = new profileController();
