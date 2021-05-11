@@ -1,0 +1,8 @@
+.Header-helper-block {
+    display: flex;
+    justify-content: end;
+}
+
+.Header-pointer {
+    cursor: pointer;
+}
