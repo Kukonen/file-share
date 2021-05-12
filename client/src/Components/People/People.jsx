@@ -7,7 +7,9 @@ const People = observer(() => {
     PeopleState.getAllPeople();
 
     const people = PeopleState.people.map((person) => (
-        <li className="list-group-item" key = {person.id}>{person.name}</li>
+        <li className="list-group-item" key = {person.id}>
+            <a href={"/user/" + person.id} className="nav-link">{person.name}</a>
+        </li>
     ))
 
     if (people.length !== 0) {

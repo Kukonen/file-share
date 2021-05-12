@@ -13,7 +13,24 @@ class peopleController {
     }
 
     async getOne(req, res) {
-        console.log(req.params.id)
+        const id = req.body.id
+
+        let user = [];
+
+        await db.query(`SELECT * FROM public."users" WHERE id = '${id}'`).then((result) => {
+            user = JSON.parse(JSON.stringify(result.rows)) 
+        })
+        
+        if (user.length === 0) {
+            res.json({
+                status: "no matches"
+            })
+        } else {
+            res.json({
+                status: "find user",
+                name: user[0].name
+            })
+        }
     }
 }
 

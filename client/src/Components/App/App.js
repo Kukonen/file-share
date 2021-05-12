@@ -10,6 +10,7 @@ import People from '../People/People'
 import Support from '../Support/Support'
 import Login from '../Login/Login'
 import Profile from '../Profile/Profile'
+import User from '../User/User'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/support" exact component={Support} />
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile}/>
+        <Route path="/user/:id" component={User}/>
       </BrowserRouter>
     </div>
   );
