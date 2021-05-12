@@ -6,7 +6,8 @@ import UserState from '../../Store/User/user.state'
 
 const Profile = observer(() => {
     
-    ProfileState.isLoggedFunc()
+    ProfileState.isLoggedFunc();
+    ProfileState.takeInformation();
 
     return (
         <div className="Profile">

@@ -1,6 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter, Route} from 'react-router-dom'
+import ProfileState from '../../Store/Profile/profile.state'
 
 import Header from '../Header/Header'
 import Main from '../Main/Main'
@@ -11,6 +12,9 @@ import Login from '../Login/Login'
 import Profile from '../Profile/Profile'
 
 function App() {
+
+  ProfileState.takeInformation();
+
   return (
     <div className="App">
       <Header />
