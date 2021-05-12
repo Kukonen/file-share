@@ -1,4 +1,5 @@
 const db = require('../db');
+const sha256 = require('js-sha256');
 
 class profileController {
     async isLogged(req, res) {
@@ -46,8 +47,37 @@ class profileController {
                 status: "404"
             }))
         }
+    }
 
-        
+    async changePassword(req, res) {
+        const {lastPassword, newPassword} = req.body;
+
+        const hashLastPassword = sha256(lastPassword + 'fgvhbjnm');
+        const hashNewPassword = sha256(newPassword + 'fgvhbjnm');
+
+        let user = []
+
+        await db.query(`UPDATE public."users" SET password = '${hashNewPassword}' WHERE key = '${req.cookies.key}' AND password = '${hashLastPassword}'`).then((result) => {
+            user = JSON.parse(JSON.stringify(result.rows));
+        }).catch(e => console.log('error db'))
+
+        if (user.length !== 0) {
+            res.json({
+                status: "ok"
+            })
+            return;
+        } else {
+            res.json({
+                status: "ERROR"
+            })
+            return;
+        }
+    }
+
+    logout(req, res) {
+        res.clearCookie('key');
+        res.json("ok");
+        return;
     }
 }
 

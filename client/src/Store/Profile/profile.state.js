@@ -16,22 +16,24 @@ class ProfileState {
     }
 
     async takeInformation() {
+        if (!this.isLogged) {
+            return;
+        }
+        
         let data = {}
 
         await axios.post('/profile/takeinformation').then((response) => {
             data = JSON.parse(JSON.stringify(response.data))
         })
 
-        console.log(data);
-        console.log(data.status);
-        console.log(data.name);
-
         if (data.status === "ok") {
             UserState.name = data.name;
             Cookies.set('name', data.name);
         }
         else if (data.status === "404") {
-            UserState.isLogged = false;
+            UserState.name = '';
+            Cookies.remove('name');
+            this.isLogged = false;
         }
     }
  
@@ -52,15 +54,42 @@ class ProfileState {
     }
 
     async changeNameSend() {
-        let data = {}
-
         await axios.post('/profile/changename', {
             name: this.newName
+        }).then()
+
+        this.newName = '';
+        this.takeInformation();
+    }
+
+    changeLastPassword(password) {
+        this.lastPassword = password;
+    }
+
+    changeNewPassword(password) {
+        this.newPassword = password;
+    }
+
+    async changePassowrdSend() {
+        let data = {}
+        await axios.post('/profile/changepassword', {
+            lastPassword: this.lastPassword,
+            newPassword: this.newPassword
         }).then((response) => {
             data = JSON.parse(JSON.stringify(response.data))
         })
+        if (data.status === "ERROR") {
+            
+        }
+        this.lastPassword = '';
+        this.newPassword = '';
+    }
 
-        this.takeInformation();
+    async logout() {
+        this.isLogged = false;
+        await axios.post('/profile/logout', {}).then()
+        Cookies.remove('name');
+        UserState.name = '';
     }
 }
 
