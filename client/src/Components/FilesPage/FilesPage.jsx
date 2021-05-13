@@ -1,11 +1,13 @@
 import React from 'react';
 
+import './FilesPage.css';
+
 import Files from '../Files/Files';
 import FilesBar from '../FilesBar/FilesBar';
 
 const FilesPage = () => {
     return (
-        <div>
+        <div className = "FilesPage">
             <Files />
             <FilesBar />
         </div>

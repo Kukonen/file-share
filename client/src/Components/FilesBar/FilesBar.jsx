@@ -1,11 +1,20 @@
 import React from 'react';
+import './FilesBar.css';
+import FilesState from '../../Store/Files/FilesState'
+import {observer} from "mobx-react-lite";
 
-const FilesBar = () => {
+const FilesBar = observer(() => {
     return (
-        <div>
-            FilesBar
+        <div className = "FilesBar">
+            <h3>Upload file</h3>
+            <div className="custom-file">
+                <input type="file" className="custom-file-input" id="customFileLangHTML" onChange={(value) => FilesState.changeFile(value)} />
+                <label className="custom-file-label" for="customFileLangHTML" data-browse="Browse">Select file</label>
+                <br /> <br />
+                <button className="btn btn-secondary" onClick={() => FilesState.sendFile()}>Send</button>
+            </div>
         </div>
     )
-}
+})
 
 export default FilesBar;

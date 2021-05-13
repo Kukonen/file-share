@@ -1,8 +1,9 @@
 import React from 'react'
+import './Files.css'
 
 const Files = () => {
     return (
-        <div>
+        <div className = "Files">
             Files page
         </div>
     )
