@@ -1,5 +1,5 @@
 import React from 'react';
-import './Profile.css';
+import './ProfilePage.css';
 import ProfileState from '../../Store/Profile/profile.state'
 import {observer} from 'mobx-react-lite'
 import UserState from '../../Store/User/user.state'

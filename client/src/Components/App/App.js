@@ -4,12 +4,12 @@ import {BrowserRouter, Route} from 'react-router-dom'
 import ProfileState from '../../Store/Profile/profile.state'
 
 import Header from '../Header/Header'
-import Main from '../Main/Main'
-import Files from '../Files/Files'
-import People from '../People/People'
-import Support from '../Support/Support'
-import Login from '../Login/Login'
-import Profile from '../Profile/Profile'
+import MainPage from '../MainPage/MainPage'
+import FilesPage from '../FilesPage/FilesPage'
+import PeoplePage from '../PeoplePage/PeoplePage'
+import SupportPage from '../SupportPage/SupportPage'
+import LoginPage from '../LoginPage/LoginPage'
+import ProfilePage from '../ProfilePage/ProfilePage'
 import User from '../User/User'
 
 function App() {
@@ -20,12 +20,12 @@ function App() {
     <div className="App">
       <Header />
       <BrowserRouter>
-        <Route path="/" exact component={Main} />
-        <Route path="/files" exact component={Files} />
-        <Route path="/people" exact component={People} />
-        <Route path="/support" exact component={Support} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/profile" exact component={Profile}/>
+        <Route path="/" exact component={MainPage} />
+        <Route path="/files" exact component={FilesPage} />
+        <Route path="/people" exact component={PeoplePage} />
+        <Route path="/support" exact component={SupportPage} />
+        <Route path="/login" exact component={LoginPage} />
+        <Route path="/profile" exact component={ProfilePage}/>
         <Route path="/user/:id" component={User}/>
       </BrowserRouter>
     </div>

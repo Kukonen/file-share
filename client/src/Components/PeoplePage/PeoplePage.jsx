@@ -1,6 +1,6 @@
 import React from 'react';
 import PeopleState from '../../Store/People/people.state';
-import './People.css';
+import './PeoplePage.css';
 import {observer} from 'mobx-react-lite';
 
 const People = observer(() => {

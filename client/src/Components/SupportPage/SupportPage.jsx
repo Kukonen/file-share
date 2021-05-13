@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './Support.css';
+import './SupportPage.css';
 import axios from 'axios';
 
 const Support = () => {
