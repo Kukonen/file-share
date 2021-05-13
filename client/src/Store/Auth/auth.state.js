@@ -6,6 +6,7 @@ import UserState from '../User/user.state'
 class AuthState {
     loginEmail = "";
     loginPassword = "";
+    loginRemember = false;
     registerEmail = "";
     registerERROR = false;
     loginERROR = false;
@@ -24,6 +25,10 @@ class AuthState {
         this.loginERROR = false;
     }
 
+    changeLoginRemember(remember) {
+        this.loginRemember = remember;
+    }
+
     changeRegisterEmail(email) {
         this.registerERROR = false;
         this.registerEmail = email;
@@ -39,12 +44,20 @@ class AuthState {
             data = JSON.parse(JSON.stringify(response.data))
         })
 
-        if (data.status === "ok") {
+        if (data.status === "error") {
+            this.loginERROR = true;
+        }
+        else if (data.status === "ok"){
             UserState.name = data.name;
             Cookies.set("name", data.name);
-        }
-        else {
-            this.loginERROR = true;
+
+            if (this.loginRemember) {
+                localStorage.setItem('remember', true)
+            } else {
+                sessionStorage.setItem('remember', true)
+            }
+            
+            window.location.replace('/')
         }
     }
 

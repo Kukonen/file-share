@@ -90,6 +90,9 @@ class ProfileState {
         await axios.post('/profile/logout', {}).then()
         Cookies.remove('name');
         UserState.name = '';
+        sessionStorage.setItem('remember', false);
+        localStorage.removeItem('remember');
+        window.location.replace('/')
     }
 }
 
