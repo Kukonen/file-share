@@ -17,6 +17,7 @@ app.use('/support', supportRoute);
 app.use('/profile', profileRoute);
 app.use('/people', peopleRoute);
 app.use('/files', filesRoute);
+app.use(express.static('files'));
 
 app.listen(PORT, () => {
     console.log(`Server stared in port ${PORT}`);

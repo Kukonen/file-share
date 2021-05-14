@@ -23,14 +23,23 @@ class FilesState {
     }
 
     async sendFile() {
-        let formData = new FormData();
-        formData.append("file", this.file);
+        
         let isLogin = await this.isLogin();
 
-        if (isLogin.status === "ok") {
-            alert("here");
-        } else if (isLogin.status === "not found") {
-            alert("here 2")
+
+        if (isLogin.status === "not found") {
+            return;
+        }
+        else if (isLogin.status === "ok") {
+            let formData = new FormData();
+            formData.append("file", this.file);
+            await axios.post('/files/sendFile', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(() => {
+                
+            })
         }
     }
 
