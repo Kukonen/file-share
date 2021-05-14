@@ -61,6 +61,26 @@ class filesController {
             await db.query(`INSERT INTO public."files" (name, path, date, owner) values ($1, $2, $3, $4)`, [file.name, fileName, date, user[0].id]).then();
             }).catch(e => console.log(`error: ${e}`));
     }
+
+    async getFiles(req, res) {
+
+        if (req.body.settings === "own files") {
+            let files = [];
+            let user = [];
+
+            await db.query(`SELECT * FROM public."users" WHERE key = '${req.cookies.key}'`).then((result) => {
+                user = JSON.parse(JSON.stringify(result.rows));
+            }).catch(e => console.log('error db'))
+
+            await db.query(`SELECT * FROM public."files" WHERE owner = '${user[0].id}'`).then((result) => {
+                files = JSON.parse(JSON.stringify(result.rows));
+            }).catch(e => console.log(`error: ${e}`))
+
+            res.json(files);
+            return;
+        }
+        
+    }
 }
 
 module.exports = new filesController();

@@ -4,6 +4,7 @@ import axios from 'axios';
 class FilesState {
 
     file = {}
+    files = {}
 
     constructor() {
         makeAutoObservable(this);
@@ -16,7 +17,7 @@ class FilesState {
     async isLogin() {
         let data = {}
 
-        await axios.get('/files/isLogin').then((response) => {
+        await axios.get('/files/islogin').then((response) => {
             data = JSON.parse(JSON.stringify(response.data));
         })
         return data;
@@ -33,14 +34,26 @@ class FilesState {
         else if (isLogin.status === "ok") {
             let formData = new FormData();
             formData.append("file", this.file);
-            await axios.post('/files/sendFile', formData, {
+            await axios.post('/files/sendfile', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            }).then(() => {
-                
-            })
+            }).then(() => {})
         }
+    }
+
+    async getOwnFiles() {
+        let data = {}
+
+        await axios.post('/files/getfiles', {
+            settings: "own files"
+        }).then((response) => {
+            data = JSON.parse(JSON.stringify(response.data));
+        })
+        console.log(data);
+        this.files = JSON.parse(JSON.stringify(data));
+        console.log(this.files);
+        
     }
 
 }
