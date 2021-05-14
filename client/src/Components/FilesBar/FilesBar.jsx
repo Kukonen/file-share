@@ -1,6 +1,6 @@
 import React from 'react';
 import './FilesBar.css';
-import FilesState from '../../Store/Files/FilesState'
+import FilesState from '../../Store/Files/files.state'
 import {observer} from "mobx-react-lite";
 
 const FilesBar = observer(() => {

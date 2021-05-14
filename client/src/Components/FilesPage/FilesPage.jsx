@@ -8,8 +8,8 @@ import FilesBar from '../FilesBar/FilesBar';
 const FilesPage = () => {
     return (
         <div className = "FilesPage">
-            <Files />
             <FilesBar />
+            <Files />
         </div>
     )
 }

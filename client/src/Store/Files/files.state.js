@@ -50,10 +50,7 @@ class FilesState {
         }).then((response) => {
             data = JSON.parse(JSON.stringify(response.data));
         })
-        console.log(data);
-        this.files = JSON.parse(JSON.stringify(data));
-        console.log(this.files);
-        
+        this.files =  data;
     }
 
 }

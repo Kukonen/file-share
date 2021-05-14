@@ -24,9 +24,6 @@ const People = observer(() => {
     else {
         return (
             <div>
-                <h3>
-                    Not a single user on this site...
-                </h3>
             </div>
         )
     }

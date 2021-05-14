@@ -3,7 +3,7 @@ import React from 'react';
 const File = (props) => {
     return (
         <div>
-            <p>{props}</p>
+            <p>{props.name}</p>
         </div>
     )
 }
