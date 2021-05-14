@@ -1,8 +1,9 @@
 import React from 'react';
+import './File.css';
 
 const File = (props) => {
     return (
-        <div>
+        <div className="File">
             <p>{props.name}</p>
         </div>
     )

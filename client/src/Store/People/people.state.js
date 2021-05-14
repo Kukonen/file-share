@@ -29,7 +29,7 @@ class PeopleState {
         await axios.post('/people/:id', {id: path[4]}).then( response =>
             data = JSON.parse(JSON.stringify(response.data))
         )
-        console.log(data.name)
+
         if (data.status === "find user") {
             this.personName = data.name;
         }

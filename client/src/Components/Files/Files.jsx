@@ -3,15 +3,11 @@ import './Files.css'
 import FilesState from '../../Store/Files/files.state'
 import File from '../File/File'
 import {observer} from "mobx-react-lite";
-import {util} from 'util'
 
 const Files = observer(() => {
 
     FilesState.getOwnFiles();
 
-    // const filesGroup = FilesState.files.map((file) => (
-    //     <File key = {file.id} {...file }/>
-    // ))
     let filesGroup = [];
 
     if (FilesState.files.length !== undefined) {
@@ -20,20 +16,11 @@ const Files = observer(() => {
     ))
     }
     
-
-    if (filesGroup.length !== 0) {
-        return (
-        <div>
-            {filesGroup}
+    return (
+        <div className="Files">
+            {filesGroup.length !== 0 ? filesGroup : null}
         </div>
     )
-    }
-    else {
-        return (
-            <div>
-            </div>
-        )
-    }
 });
 
 export default Files;

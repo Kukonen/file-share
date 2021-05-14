@@ -53,6 +53,18 @@ class FilesState {
         this.files =  data;
     }
 
+    async getUserFiles(id) {
+        let data = {}
+
+        await axios.post('/files/getfiles', {
+            settings: "get user files",
+            userId: id
+        }).then((response) => {
+            data = JSON.parse(JSON.stringify(response.data));
+        })
+        this.files =  data;
+    }
+
 }
 
 export default new FilesState();

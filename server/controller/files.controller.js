@@ -79,6 +79,16 @@ class filesController {
             res.json(files);
             return;
         }
+        else if (req.body.settings === "get user files") {
+            let files = [];
+
+            await db.query(`SELECT * FROM public."files" WHERE owner = '${req.body.userId}'`).then((result) => {
+                files = JSON.parse(JSON.stringify(result.rows));
+            }).catch(e => console.log(`error: ${e}`))
+
+            res.json(files);
+            return;
+        }
         
     }
 }
