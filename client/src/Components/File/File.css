@@ -1,4 +1,22 @@
 .File {
     width: 25%;
     height: 25%;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.File-Image {
+    width: 120%;
+    height: 120%;
+    margin-bottom: 15%;
+}
+.File-Text {
+    width: 100%;
+    font-size: 120%;
+}
+
+.File-Link {
+    width: 50%;
+    cursor: pointer;
 }
