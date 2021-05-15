@@ -4,6 +4,7 @@ import PeopleState from '../../Store/People/people.state'
 import {observer} from 'mobx-react-lite'
 import FilesState from '../../Store/Files/files.state'
 import { configure } from "mobx"
+import {Download} from 'react-bootstrap-icons'
 
 configure({
     enforceActions: "never",
@@ -23,6 +24,7 @@ const User = observer(() => {
         filesGroup = FilesState.files.map((file) => (
         <li key = {file.id} className="UserSpan list-group-item">
             <span>{file.name}</span>
+            <Download className="User-Download-Icon" onClick = {() => FilesState.downloadFile(file.id, file.name)}/>
         </li>
     ))
     }

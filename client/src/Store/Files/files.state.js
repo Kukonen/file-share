@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import axios from 'axios';
+import download from 'downloadjs';
 
 class FilesState {
 
@@ -63,6 +64,20 @@ class FilesState {
             data = JSON.parse(JSON.stringify(response.data));
         })
         this.files =  data;
+    }
+
+    async downloadFile(id, name) {
+        let data = {};
+
+        await axios.get('/files/downloadfile/' + id,
+        {
+            responseType: 'blob'
+        }
+        ).then((response) => {
+            data = response.data;
+        })
+
+        download(data, name)
     }
 
 }

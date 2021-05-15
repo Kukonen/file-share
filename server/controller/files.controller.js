@@ -91,6 +91,17 @@ class filesController {
         }
         
     }
+
+    async downloadFile(req, res) {
+
+        let  files = [];
+
+        await db.query(`SELECT * FROM public."files" WHERE id = ${req.params.id}`).then((result) => {
+            files = JSON.parse(JSON.stringify(result.rows));
+        }).catch(e => console.log(`error: ${e}`))
+
+        return res.download(`C:\\Users\\evgen\\Desktop\\react-apps\\file-share-pern\\server\\files\\` + files[0].path, files[0].name);
+    }
 }
 
 module.exports = new filesController();
