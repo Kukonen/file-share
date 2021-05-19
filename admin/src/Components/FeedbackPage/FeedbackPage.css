@@ -1,0 +1,14 @@
+.Feedback {
+    display: flex;
+}
+.Feedback-div-30 {
+    width: 30%;
+    padding: 5%;
+}
+.Feedback-div-40 {
+    width: 40%;
+}
+.Feedback-link-span {
+    color: #0d6efd;
+    cursor: pointer;
+}
