@@ -4,6 +4,7 @@ import {observer} from 'mobx-react-lite'
 import { configure } from "mobx"
 
 import FeedbackItem from './FeedbackItem'
+import './FeedbackNeedToAnswer.css'
 
 configure({
     enforceActions: "never",

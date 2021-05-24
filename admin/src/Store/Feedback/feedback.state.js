@@ -28,6 +28,17 @@ class FeedbackState {
             this.notAnsweredQuestions = data.questions
         }
     }
+
+    async sendProblemSolution(id, email, message) {
+        let data = {}
+        await axios.post('/admin/feedback/sendproblemsolution', {
+            id: id,
+            email: email,
+            message: message
+        }).then(response => {
+            data = response.data
+        })
+    }
 }
 
 export default new FeedbackState();
