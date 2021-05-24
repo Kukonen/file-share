@@ -38,6 +38,8 @@ class FeedbackState {
         }).then(response => {
             data = response.data
         })
+
+        if (data.status === "ok") {}
     }
 }
 

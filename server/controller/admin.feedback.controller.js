@@ -1,4 +1,5 @@
 const db = require('../db');
+const nodemailer = require('nodemailer');
 
 class FeedbackController{
     async getNotAnswerdCount(req, res) {
@@ -42,17 +43,33 @@ class FeedbackController{
     }
 
     async sendProblemSolution(req, res) {
-        const {email, message} = req.body;
-        
+        const {id, email, message} = req.body;
+
+        await db.query(`UPDATE public."problems" SET isresolved = '${true}', answer = '${message}' WHERE id = '${id}'`).then()
+
         let sendingMessage = {
             from: "test.mail.for.app@mail.ru",
             to: email,
-            subject: "File share",
+            subject: "Response from technical support",
             text: "Plaintext version of the message",
-            html: `
-            ${message}
-            `
+            html: `${message}`
         };
+
+        let transporter = nodemailer.createTransport({
+            host: "smtp.mail.ru",
+            port: 465,
+            secure: true,
+            auth: {
+                user: "test.mail.for.app@mail.ru",
+                pass: "q0GFPWOQoRCNsDfulnms"
+            }
+        });
+
+        await transporter.sendMail(sendingMessage).then(() => {
+            res.json({
+                status: "ok"
+            })
+        })
     }
 }
 
