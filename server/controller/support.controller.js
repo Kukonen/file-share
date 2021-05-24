@@ -8,7 +8,7 @@ class supportController {
             user = JSON.parse(JSON.stringify(result.rows));
         }).catch(e => console.log('error db'))
 
-        await db.query(`INSERT INTO public."problems" (email, problem) values ($1, $2)`, [user[0].email, req.body.text]).then();
+        await db.query(`INSERT INTO public."problems" (email, problem, isresolved, title) values ($1, $2, $3, $4)`, [user[0].email, req.body.text, false, req.body.title]).then();
 
         res.json("ok")
     }

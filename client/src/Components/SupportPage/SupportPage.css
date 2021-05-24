@@ -5,9 +5,14 @@
 
 .Support-list-group {
     margin-top: 20%;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
 .Support-list-group-item {
     margin-bottom: 2%;
+}
+
+.Support-textarea {
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
