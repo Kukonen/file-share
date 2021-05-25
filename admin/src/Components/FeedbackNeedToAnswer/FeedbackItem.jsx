@@ -21,10 +21,10 @@ const FeedbackItem = (props) => {
                     <div className="card-body"> 
                         {props.problem}
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <h5>Answer:</h5>
-                        <textarea class="form-control Feedback-answer-textarea" rows="7" onChange={(value) => setMessage(value.target.value)}>{message}</textarea>
-                        <button type="button" class="btn btn-secondary Feedback-send-button" onClick = {() => FeedbackState.sendProblemSolution(props.id, props.email, message)}>Send</button>
+                        <textarea className="form-control Feedback-answer-textarea" rows="7" onChange={(value) => setMessage(value.target.value)} value ={message} />
+                        <button type="button" className="btn btn-secondary Feedback-send-button" onClick = {() => FeedbackState.sendProblemSolution(props.id, props.email, message)}>Send</button>
                     </div>
                 </div>
                 
