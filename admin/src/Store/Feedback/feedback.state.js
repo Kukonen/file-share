@@ -4,6 +4,7 @@ import axios from 'axios'
 class FeedbackState {
     notAnsweredCount = 0
     notAnsweredQuestions = []
+    alreadyAnswerdQuestions = []
 
     constructor() {
         makeAutoObservable(this)
@@ -22,6 +23,16 @@ class FeedbackState {
     async getNotAnswerdQuestions() {
         let data = {}
         await axios.get('/admin/feedback/getnotanswerdquestions').then(response => {
+            data = response.data
+        })
+        if (data.status === "ok") {
+            this.notAnsweredQuestions = data.questions
+        }
+    }
+
+    async getAlreadyAnswerdQuestions() {
+        let data = {}
+        await axios.get('/admin/feedback/getalreadyanswerdquestions').then(response => {
             data = response.data
         })
         if (data.status === "ok") {

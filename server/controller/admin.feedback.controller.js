@@ -42,6 +42,19 @@ class FeedbackController{
         })
     }
 
+    async getAlreadyAnswerdQuestions(req, res) {
+        let data = []
+
+        await db.query(`SELECT * FROM public."problems" WHERE isresolved = 'true'`).then(result => {
+            data = JSON.parse(JSON.stringify(result.rows))
+        }).catch(e => console.log(e))
+
+        res.json({
+            status: "ok",
+            questions: data
+        })
+    }
+
     async sendProblemSolution(req, res) {
         const {id, email, message} = req.body;
 
