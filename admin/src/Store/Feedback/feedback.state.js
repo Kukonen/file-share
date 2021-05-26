@@ -3,6 +3,7 @@ import axios from 'axios'
 
 class FeedbackState {
     notAnsweredCount = 0
+    alreadyAnsweredCount = 0
     notAnsweredQuestions = []
     alreadyAnswerdQuestions = []
 
@@ -17,6 +18,16 @@ class FeedbackState {
         })
         if (data.status === "ok") {
             this.notAnsweredCount = data.count
+        }
+    }
+
+    async getAlreadyAnswerdCount() {
+        let data = {}
+        await axios.get('/admin/feedback/getalreadyanswerdcount').then(response => {
+            data = response.data
+        })
+        if (data.status === "ok") {
+            this.alreadyAnsweredCount = data.count
         }
     }
 

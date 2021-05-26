@@ -13,6 +13,7 @@ const FeedbackPage = observer(() => {
     const [mode, setMode] = useState(0)
 
     FeedbackState.getNotAnswerdCount()
+    FeedbackState.getAlreadyAnswerdCount()
 
     return (
         <div className = "Feedback">
@@ -28,7 +29,8 @@ const FeedbackPage = observer(() => {
                 mode === 0 ?
                     <div>
                         <h3>Staus</h3>
-                        <span>You have {FeedbackState.notAnsweredCount} new user's problems</span>
+                        <p>You have {FeedbackState.notAnsweredCount} new user's problems</p>
+                        <p>And {FeedbackState.alreadyAnsweredCount} already answered</p>
                     </div> :
                 mode === 1 ?
                     <FeedbackNeedToAnswer /> :

@@ -14,6 +14,18 @@ class FeedbackController{
         })
     }
 
+    async getAlreadyAnswerdCount(req, res) {
+        let data = []
+
+        await db.query(`SELECT * FROM public."problems" WHERE isresolved = 'true'`).then(result => {
+            data = JSON.parse(JSON.stringify(result.rows))
+        }).catch(e => console.log(e))
+        res.json({
+            status: "ok",
+            count: data.length
+        })
+    }
+
     async getNotAnswerdQuestions(req, res) {
         let questionsData = []
 
