@@ -20,15 +20,15 @@ const FeedbackAlreadyAnswered = observer(() => {
     let questions = null
 
     if (FeedbackState.notAnsweredQuestions.length !== 0) {
-        questions = FeedbackState.notAnsweredQuestions.map((question) => {
+        questions = FeedbackState.alreadyAnswerdQuestions.map((question) => {
             return(
                 <FeedbackItem key = {question.id} {...question}/>
             )})
     }
 
     const findItemByTitle = () => {
-        if (FeedbackState.notAnsweredQuestions.length !== 0) {
-            return questions.filter(question => question.props.title.toLowerCase().indexOf(findTitle) !== -1)
+        if (FeedbackState.alreadyAnswerdQuestions.length !== 0 && findTitle !== '') {
+            return questions.filter(question => question.props.title.toLowerCase().indexOf(findTitle.toLowerCase()) !== -1)
         } else {
             return null;
         }

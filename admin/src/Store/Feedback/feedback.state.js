@@ -47,7 +47,7 @@ class FeedbackState {
             data = response.data
         })
         if (data.status === "ok") {
-            this.notAnsweredQuestions = data.questions
+            this.alreadyAnswerdQuestions = data.questions
         }
     }
 

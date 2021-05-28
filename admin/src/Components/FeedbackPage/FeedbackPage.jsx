@@ -13,13 +13,15 @@ const FeedbackPage = observer(() => {
     const [mode, setMode] = useState(0)
 
     FeedbackState.getNotAnswerdCount()
+    FeedbackState.getNotAnswerdQuestions()
     FeedbackState.getAlreadyAnswerdCount()
+    FeedbackState.getAlreadyAnswerdQuestions()
 
     return (
         <div className = "Feedback">
             <div className = "Feedback-div-30">
                 <ul className="list-group">
-                    <li className = {mode === 0 ?"list-group-item list-group-item-action active" : "list-group-item"} ><span className="Feedback-link-span" onClick = {() => setMode(0)}>Status</span></li>
+                    <li className = {mode === 0 ?"list-group-item list-group-item-action active" : "list-group-item"}><span className="Feedback-link-span" onClick = {() => setMode(0)}>Status</span></li>
                     <li className = {mode === 1 ?"list-group-item list-group-item-action active" : "list-group-item"}><span className="Feedback-link-span" onClick = {() => setMode(1)}>Need to answer</span></li>
                     <li className = {mode === 2 ?"list-group-item list-group-item-action active" : "list-group-item"}><span className="Feedback-link-span" onClick = {() => setMode(2)}>Already answered</span></li>
                 </ul>

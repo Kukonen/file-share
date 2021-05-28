@@ -28,7 +28,7 @@ const FeedbackNeedToAnswer = observer(() => {
 
     const findItemByTitle = () => {
         if (FeedbackState.notAnsweredQuestions.length !== 0) {
-            return questions.filter(question => question.props.title.toLowerCase().indexOf(findTitle) !== -1)
+            return questions.filter(question => question.props.title.toLowerCase().indexOf(findTitle.toLowerCase()) !== -1)
         } else {
             return null;
         }
