@@ -2,7 +2,19 @@ const db = require('../db');
 const nodemailer = require('nodemailer');
 
 class FeedbackController{
+
     async getNotAnswerdCount(req, res) {
+        
+        {
+            let data = []
+            const key = req.cookies.key
+            await db.query(`SELECT * FROM public."users" WHERE key = '${key}' AND role = 'admin'`).then(result => {
+                data = JSON.parse(JSON.stringify(result.rows))
+            }).catch(e => console.log(e))
+
+            if (data.length === 0) return true;
+        }
+
         let data = []
 
         await db.query(`SELECT * FROM public."problems" WHERE isresolved = 'false'`).then(result => {
@@ -15,6 +27,17 @@ class FeedbackController{
     }
 
     async getAlreadyAnswerdCount(req, res) {
+
+        {
+            let data = []
+            const key = req.cookies.key
+            await db.query(`SELECT * FROM public."users" WHERE key = '${key}' AND role = 'admin'`).then(result => {
+                data = JSON.parse(JSON.stringify(result.rows))
+            }).catch(e => console.log(e))
+
+            if (data.length === 0) return true;
+        }
+
         let data = []
 
         await db.query(`SELECT * FROM public."problems" WHERE isresolved = 'true'`).then(result => {
@@ -27,6 +50,17 @@ class FeedbackController{
     }
 
     async getNotAnswerdQuestions(req, res) {
+
+        {
+            let data = []
+            const key = req.cookies.key
+            await db.query(`SELECT * FROM public."users" WHERE key = '${key}' AND role = 'admin'`).then(result => {
+                data = JSON.parse(JSON.stringify(result.rows))
+            }).catch(e => console.log(e))
+
+            if (data.length === 0) return true;
+        }
+
         let questionsData = []
 
         await db.query(`SELECT * FROM public."problems" WHERE isresolved = 'false'`).then(result => {
@@ -55,6 +89,17 @@ class FeedbackController{
     }
 
     async getAlreadyAnswerdQuestions(req, res) {
+
+        {
+            let data = []
+            const key = req.cookies.key
+            await db.query(`SELECT * FROM public."users" WHERE key = '${key}' AND role = 'admin'`).then(result => {
+                data = JSON.parse(JSON.stringify(result.rows))
+            }).catch(e => console.log(e))
+
+            if (data.length === 0) return true;
+        }
+
         let data = []
 
         await db.query(`SELECT * FROM public."problems" WHERE isresolved = 'true'`).then(result => {
@@ -68,6 +113,20 @@ class FeedbackController{
     }
 
     async sendProblemSolution(req, res) {
+
+        {
+            {
+                let data = []
+                const key = req.cookies.key
+
+                await db.query(`SELECT * FROM public."users" WHERE key = '${key}' AND role = 'admin'`).then(result => {
+                    data = JSON.parse(JSON.stringify(result.rows))
+                }).catch(e => console.log(e))
+    
+                if (data.length === 0) return true;
+            }
+        }
+
         const {id, email, message} = req.body;
 
         await db.query(`UPDATE public."problems" SET isresolved = '${true}', answer = '${message}' WHERE id = '${id}'`).then()
