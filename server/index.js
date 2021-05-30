@@ -12,6 +12,7 @@ const filesRoute = require('./routes/files.route');
 // admin's routes
 const adminRoute = require('./routes/admin.route')
 const adminFeedbackRoute = require('./routes/admin.feedback.route')
+const adminUsersRoute = require('./routes/admin.users.route')
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use(express.static('files'));
 // admin's settings to app
 app.use('/admin', adminRoute)
 app.use('/admin/feedback', adminFeedbackRoute)
+app.use('/admin/users', adminUsersRoute)
 
 app.listen(PORT, () => {
     console.log(`Server stared in port ${PORT}`);
