@@ -11,7 +11,7 @@ const UsersPage = observer(() => {
     UsersState.getUsers();
 
     if (UsersState.users.length !== 0) {
-        users = UsersState.users.map(user => <User key = "user.id" {...user}/>)
+        users = UsersState.users.map(user => <User key = {user.id} {...user}/>)
     }
 
     return (
