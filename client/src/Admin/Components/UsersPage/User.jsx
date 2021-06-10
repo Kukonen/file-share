@@ -10,7 +10,7 @@ const User = (props) => {
     const [role, setRole] = useState(props.role);
 
     return (
-        <div className="card User">
+        <div className="card Admin-User">
                 <div className="card-header">
                     <h2 className="mb-0" onClick={() => { setIsShow(!isShow) } }>
                         <button className="btn btn-link btn-block text-left collapsed nav-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
