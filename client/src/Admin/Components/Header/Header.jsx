@@ -6,13 +6,13 @@ const Header = () => {
             <h5 className="my-0 mr-md-auto font-weight-normal">Admin panel</h5>
             <ul className="nav justify-content-center">
                 <li className="nav-item">
-                    <a className="nav-link active" href="/">Main page</a>
+                    <a className="nav-link active" href="/admin/">Main page</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/users/">Users</a>
+                    <a className="nav-link" href="/admin/users/">Users</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/feedback/">Feedback</a>
+                    <a className="nav-link" href="/admin/feedback/">Feedback</a>
                 </li>
             </ul>
         </div>

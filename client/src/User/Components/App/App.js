@@ -18,7 +18,11 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      {window.location.pathname.split("/")[1] !== "admin" ? 
+        <Header /> :
+        null
+      }
+      
       <BrowserRouter>
         <Route path="/" exact component={MainPage} />
         <Route path="/files" exact component={FilesPage} />

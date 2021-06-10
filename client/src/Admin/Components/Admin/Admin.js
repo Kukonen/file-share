@@ -1,4 +1,4 @@
-import './App.css';
+import './Admin.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter, Route} from "react-router-dom"
 
@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <Header />
       <BrowserRouter>
-        <Route path="/feedback" exact component={FeedbackPage} />
-        <Route path="/users" exact component={UsersPage} /> 
+        <Route path="/admin/feedback" exact component={FeedbackPage} />
+        <Route path="/admin/users" exact component={UsersPage} /> 
       </BrowserRouter>
     </div>
   );
