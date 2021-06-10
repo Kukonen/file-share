@@ -1,21 +1,33 @@
 import './Admin.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter, Route} from "react-router-dom"
+import AdminState from '../../Store/Admin/admin.state'
 
 import Header from '../Header/Header'
 import FeedbackPage from '../FeedbackPage/FeedbackPage';
 import UsersPage from '../UsersPage/UsersPage';
+import { observer } from 'mobx-react-lite';
 
-function App() {
+const Admin = observer(() => {
+
+  AdminState.setIsAdmin()
+
   return (
     <div className="App">
-      <Header />
-      <BrowserRouter>
-        <Route path="/admin/feedback" exact component={FeedbackPage} />
-        <Route path="/admin/users" exact component={UsersPage} /> 
-      </BrowserRouter>
+      {
+        AdminState.isAdmin ? 
+        <div>
+          <Header />
+          <BrowserRouter>
+            <Route path="/admin/feedback" exact component={FeedbackPage} />
+            <Route path="/admin/users" exact component={UsersPage} /> 
+          </BrowserRouter>
+        </div> :
+        null
+      }
     </div>
-  );
-}
+  )
+  
+})
 
-export default App;
+export default Admin;
