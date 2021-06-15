@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const db = require('../db');
 const nodemailer = require('nodemailer');
 
@@ -132,7 +134,7 @@ class FeedbackController{
         await db.query(`UPDATE public."problems" SET isresolved = '${true}', answer = '${message}' WHERE id = '${id}'`).then()
 
         let sendingMessage = {
-            from: "test.mail.for.app@mail.ru",
+            from: `${process.env.EMAIL}`,
             to: email,
             subject: "Response from technical support",
             text: "Plaintext version of the message",
@@ -144,8 +146,8 @@ class FeedbackController{
             port: 465,
             secure: true,
             auth: {
-                user: "test.mail.for.app@mail.ru",
-                pass: "q0GFPWOQoRCNsDfulnms"
+                user: `${process.env.EMAIL}`,
+                pass: `${process.env.EMAIL_PASS}`
             }
         });
 

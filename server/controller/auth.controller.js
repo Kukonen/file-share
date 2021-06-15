@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const db = require('../db');
 const uuid = require('uuid');
 const sha256 = require('js-sha256');
@@ -6,6 +8,7 @@ const nodemailer = require('nodemailer');
 class authController {
 
 		async register(req, res) { 
+
 				const {email} = req.body;
 
 				if (email.indexOf('@') == -1)
@@ -42,7 +45,7 @@ class authController {
 				await db.query(`INSERT INTO public."users" (name, email, role, password, key) values ($1, $2, $3, $4, $5)`, [name, email, "user", hashPassword, key]).then();
 
 				let message = {
-						from: "test.mail.for.app@mail.ru",
+						from: `${process.env.EMAIL}`,
 						to: email,
 						subject: "File share",
 						text: "Plaintext version of the message",
@@ -58,8 +61,8 @@ class authController {
 						port: 465,
 						secure: true,
 						auth: {
-							user: "test.mail.for.app@mail.ru",
-							pass: "q0GFPWOQoRCNsDfulnms"
+							user: `${process.env.EMAIL}`,
+							pass: `${process.env.EMAIL_PASS}`
 						}
 					});
 
